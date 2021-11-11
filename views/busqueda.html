@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include ('partials/header.html') %>
+    <link rel="stylesheet" href="/css/estilos_index.css">
+</head>
+
+<body>
+    <div class="container mt-4 text-center">
+        <h1 class="text-center">Alumno</h1>
+        <h2 class="text-center">Datos</h2>
+        <table class="table table-bordered mx-auto">
+            <thead>
+                <tr class="text-center">
+                    <th>Codigo</th>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<datos.length; i++) { %>
+                    <tr class = "text-center">
+                        <td><%= datos[i].codalu %></td>
+                        <td><%= datos[i].apealu %></td>
+                        <td><%= datos[i].nomalu %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+        <h2 class="text-center">Cursos</h2>
+        <table class="table table-bordered mx-auto">
+            <thead>
+                <tr class="text-center">
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<cursos.length; i++) { %>
+                    <tr class = "text-center">
+                        <td><%= cursos[i].codcur %></td>
+                        <td><%= cursos[i].nomcur %></td>
+                        <td><%= cursos[i].nota %></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <h3>Promedio: <%= promedio %></h3> 
+        <a class="btn btn-primary mt-4" href="/" role="button">Volver</a>
+    </div>
+</body>
+</html>
