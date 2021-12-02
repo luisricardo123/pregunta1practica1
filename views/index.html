@@ -7,15 +7,11 @@
 
 <body>
     <div class="container mt-4">
-        <h1 class="text-center">Alumno</h1>
-    
-        <form method="get" action="/buscar">
-            <div class="mb-3">
-                <label for="nombre">Codigo</label>
-                <input type="text" name="codalu" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
+        <h1><%= titulo%></h1>
+        <a href="/alumnos" class="btn btn-success mx-2" >Alumnos</a>
+        <a href="/cursos" class="btn btn-success mx-2" >Cursos</a>
+        <a href="/alumnos_cursos" class="btn btn-success mx-2" >Alumnos Cursos</a>
+        <a href="/buscar_notas" class="btn btn-success mx-2" >Consultar Notas</a>
     </div>
 </body>
 </html>

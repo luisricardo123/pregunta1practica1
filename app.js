@@ -1,6 +1,10 @@
 const express = require('express');
 const app = express();
 const sql = require('mssql')
+const enrutadorAlumnos = require("./routes/alumnos");
+const enrutadorCursos = require("./routes/cursos");
+const enrutadorAluCur = require("./routes/alucur");
+
 
 //Configuraciones
 app.set('puerto', process.env.PORT || 3000);
@@ -9,8 +13,6 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine','ejs');
 
 app.use(express.static('public'));
-
-// app.set('views',path.join(__dirname,"views"));
 
 app.use(express.urlencoded({extended: false}));
 
@@ -32,12 +34,21 @@ app.get("/", (req, res) => {
     });
 });
 
+app.use('/alumnos', enrutadorAlumnos);
+app.use('/cursos', enrutadorCursos);
+app.use('/alumnos_cursos', enrutadorAluCur);
+
+app.get("/buscar_notas", (req, res) => {
+    res.render("form-busqueda.html", {
+        titulo: "Pregunta 1"
+    });
+});
 app.get('/buscar', async (req,res) => {
     const id = req.query.codalu;
     const pool = await sql.connect(sqlConfig)
     
     const result  = await pool.request().input('input_parameter', sql.Char, id).query("SELECT * FROM alumnos WHERE codalu = @input_parameter");
-    const result_cursos = await pool.request().input('input_parameter', sql.Char, id).query("SELECT alu_cur.codcur, cursos.nomcur, alu_cur.nota, cursos.credito FROM alu_cur INNER JOIN cursos ON alu_cur.codcur=cursos.codcur WHERE codalu = @input_parameter");
+    const result_cursos = await pool.request().input('input_parameter', sql.Char, id).query("SELECT alucur.codcur, cursos.nomcur, alucur.nota, cursos.credito FROM alucur INNER JOIN cursos ON alucur.codcur=cursos.codcur WHERE codalu = @input_parameter");
 
     var acumulador_nota = 0;
     var acumulador_creditos = 0;
@@ -56,8 +67,9 @@ app.get('/buscar', async (req,res) => {
         titulo: "ALUMNO"
     });
 
-    console.log(result_cursos["recordset"]);
+    // console.log(result_cursos["recordset"]);
 })
+
 
 app.listen(app.get('puerto'), () =>{
     console.log('Server iniciado en el puerto ' + app.get('puerto') );

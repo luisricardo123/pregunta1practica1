@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include ('partials/header.html') %>
+    <link rel="stylesheet" href="/css/estilos_actualizar.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>Actualizar Alumno</h1>
+        <!-- <a href="/"class="btn btn-primary" >Atrás</a> -->
+        <form method="post" action="/alumnos/act/<%= alumno[0].codalu %>">
+            <div class="mb-3">
+                <label for="nombre">Codigo</label>
+                <input type="text" name="codigo" value="<%= alumno[0].codalu %>" class="form-control" disabled> 
+            </div>
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value="<%= alumno[0].nomalu %>" class="form-control" > 
+            </div>
+            <div class="mb-3">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" value="<%= alumno[0].apealu %>" class="form-control">
+            </div>     
+            <button type="submit" class="btn btn-success">Actualizar</button>
+        </form>
+
+    </div>
+</body>

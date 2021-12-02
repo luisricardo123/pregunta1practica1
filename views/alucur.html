@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include ('partials/header.html') %>
+    <link rel="stylesheet" href="/css/estilos_index.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Cursos</h1>
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th>Alumno</th>
+                    <th>Curso</th>
+                    <th>Nota</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<datos.length; i++) { %>
+                    <tr>
+                        <td><%= datos[i].codalu %></td>
+                        <td><%= datos[i].codcur %></td>
+                        <td><%= datos[i].nota %></td>
+                        <td class="td-buttons">
+                            <a href="/alumnos_cursos/editar/<%= datos[i].codalu %>/<%= datos[i].codcur %>" class="btn btn-success mx-2" >Actualizar</a>
+                            <a href="/alumnos_cursos/borrar/<%= datos[i].codalu %>/<%= datos[i].codcur %>" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <form method="post" action="/alumnos_cursos/agregar">
+            <div class="mb-3">
+                <label for="alumno">Codigo Alumno</label>
+                <input type="text" name="alumno" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="curso">Codigo Curso</label>
+                <input type="text" name="curso" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="nota">Nota</label>
+                <input type="text" name="nota" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <a href="/" class="btn btn-secondary mx-auto mb-5" >Volver</a>
+    </div>
+    
+    
+</body>
+</html>

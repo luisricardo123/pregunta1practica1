@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include ('partials/header.html') %>
+    <link rel="stylesheet" href="/css/estilos_index.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Alumnos</h1>
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<datos.length; i++) { %>
+                    <tr>
+                        <td><%= datos[i].codalu %></td>
+                        <td><%= datos[i].nomalu %></td>
+                        <td><%= datos[i].apealu %></td>
+                        <td class="td-buttons"><a href="/alumnos/editar/<%= datos[i].codalu %>" class="btn btn-success mx-2" >Actualizar</a><a href="/alumnos/borrar/<%= datos[i].codalu %>" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <form method="post" action="/alumnos/agregar">
+            <div class="mb-3">
+                <label for="nombre">Codigo</label>
+                <input type="text" name="codigo" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="apellido">Apellido</label>
+                <input type="text" name="apellido" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <a href="/" class="btn btn-secondary mx-auto" >Volver</a>
+    </div>
+
+    <!-- <div class="container mt-4">
+        <h1 class="text-center">Alumno</h1>
+    
+        <form method="get" action="/buscar">
+            <div class="mb-3">
+                <label for="nombre">Codigo</label>
+                <input type="text" name="codalu" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div> -->
+    
+</body>
+</html>

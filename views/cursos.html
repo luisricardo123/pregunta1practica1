@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include ('partials/header.html') %>
+    <link rel="stylesheet" href="/css/estilos_index.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Cursos</h1>
+        <table class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Credito</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let i=0; i<datos.length; i++) { %>
+                    <tr>
+                        <td><%= datos[i].codcur %></td>
+                        <td><%= datos[i].nomcur %></td>
+                        <td><%= datos[i].credito %></td>
+                        <td class="td-buttons"><a href="/cursos/editar/<%= datos[i].codcur %>" class="btn btn-success mx-2" >Actualizar</a><a href="/cursos/borrar/<%= datos[i].codcur %>" class="btn btn-danger">Eliminar</a></td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <form method="post" action="/cursos/agregar">
+            <div class="mb-3">
+                <label for="nombre">Codigo</label>
+                <input type="text" name="codigo" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="credito">Credito</label>
+                <input type="text" name="credito" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+        <a href="/" class="btn btn-secondary mx-auto" >Volver</a>
+    </div>
+    
+    
+</body>
+</html>
